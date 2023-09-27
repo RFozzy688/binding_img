@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,22 @@ namespace binding_img
     /// </summary>
     public partial class MainWindow : Window
     {
+        string[] _paths;
         public MainWindow()
         {
             InitializeComponent();
+
+            _paths = Directory.GetFiles(@"C:\img");
+            AddPathToListBox();
+        }
+        private void AddPathToListBox()
+        {
+            foreach (string path in _paths)
+            {
+                ListBoxItem lbi = new ListBoxItem();
+                lbi.Content = path;
+                ListBox.Items.Add(lbi);
+            }
         }
     }
 }
